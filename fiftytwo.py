@@ -66,8 +66,8 @@ def load_image(name, colorkey=None):
          return None, None
          #raise SystemExit, message
 
-    if colorkey is not None:
-        if colorkey is -1:
+    if colorkey != None:
+        if colorkey == -1:
             colorkey = image.get_at((0,0))
         image.set_colorkey(colorkey, pygame.RLEACCEL)
 
@@ -222,7 +222,7 @@ class cardgroup(pygame.sprite.OrderedUpdates):
         temp = self.blank_card.get_rect()
         temp.move_ip(ulpos[0], ulpos[1])
         self.back, unused = load_image('back.' + run.deck.deck + '.png')
-        if self.back is None:
+        if self.back == None:
             self.back, unused = load_image('back.' + run.deck.deck + '.tga')
 
         list = self.sprites()
@@ -349,7 +349,7 @@ class cardgroup(pygame.sprite.OrderedUpdates):
         """
         lrpos = self.newlr()
 
-        if len(self.sprites()) is 0 or mouseposition[0] <= self.ulpos[0] or mouseposition[0] >= self.lrpos[0] or mouseposition[1] <= self.ulpos[1] or mouseposition[1] >= self.lrpos[1]:
+        if len(self.sprites()) == 0 or mouseposition[0] <= self.ulpos[0] or mouseposition[0] >= self.lrpos[0] or mouseposition[1] <= self.ulpos[1] or mouseposition[1] >= self.lrpos[1]:
             return None
 
         xstep, ystep = self.calc_steps()

@@ -57,7 +57,7 @@ class container(pygame.sprite.OrderedUpdates):
         for s in self.sprites():
             if s.special and mouseposition[0] > s.rect.left and mouseposition[0] < s.rect.right \
                 and mouseposition[1] > s.rect.top and mouseposition[1] < s.rect.bottom:
-                    if mouseposition[2] is not 0:
+                    if mouseposition[2] != 0:
                         surface.blit(s.clickimage, s.rect)
                     else:
                         surface.blit(s.hoverimage, s.rect)

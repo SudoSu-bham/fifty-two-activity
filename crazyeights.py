@@ -220,17 +220,17 @@ def clear_prev(group):
         screen.fill(BGCOL, s.get_prevrect())
 
 def special_cards(deck, discard, players, whosturn, cardprocessed, choosesuitimage, currentsuit):
-    if discard.sprites()[-1].cardid[0] == '2' and cardprocessed is 0:
+    if discard.sprites()[-1].cardid[0] == '2' and cardprocessed == 0:
         fiftytwo.draw_card(deck, players[whosturn])
         if players[whosturn].ai == 0: players[whosturn].sprites()[-1].set_face(UP)
         fiftytwo.draw_card(deck, players[whosturn])
         if players[whosturn].ai == 0: players[whosturn].sprites()[-1].set_face(UP)
         cardprocessed = 1
 
-    elif discard.sprites()[-1].cardid[0] == '8' and cardprocessed is 0:
+    elif discard.sprites()[-1].cardid[0] == '8' and cardprocessed == 0:
         whosturn = prev_turn(players, whosturn)
 
-        if players[whosturn].ai is not 1:
+        if players[whosturn].ai != 1:
             currentsuit = choose_suit(players[whosturn], choosesuitimage, discard)
         else:
             currentsuit = players[whosturn].choose_new_suit()
@@ -238,12 +238,12 @@ def special_cards(deck, discard, players, whosturn, cardprocessed, choosesuitima
 
         whosturn = end_turn(players, whosturn)
 
-    elif discard.sprites()[-1].cardid == 'J4' and cardprocessed is 0:
+    elif discard.sprites()[-1].cardid == 'J4' and cardprocessed == 0:
         whosturn = end_turn(players, whosturn)
 
         cardprocessed = 1
 
-    elif cardprocessed is 1:
+    elif cardprocessed == 1:
         pass
 
     else:
@@ -388,7 +388,7 @@ def main(playertypes, screensize):
 
                 return
 
-        if len(deck.sprites()) is 0:
+        if len(deck.sprites()) == 0:
             while len(discard.sprites()) > 1:
                 sprite = discard.sprites()[0]
                 sprite.set_face(DOWN)
@@ -421,7 +421,7 @@ def main(playertypes, screensize):
                 if players[whosturn].type != LOCALPLAYER:
                     continue
                 r = players[whosturn].detect_click(event.pos)
-                if r is not None:
+                if r != None:
                     if check_valid(discard.sprites()[-1].cardid, r.cardid, currentsuit):
                         r.move_to_group(discard)
                         whosturn = end_turn(players, whosturn)
@@ -431,7 +431,7 @@ def main(playertypes, screensize):
                         cardprocessed = 0
                 else:
                     r = deck.detect_click(event.pos)
-                    if r is not None and players[whosturn].type == LOCALPLAYER:
+                    if r != None and players[whosturn].type == LOCALPLAYER:
                         fiftytwo.draw_card(deck, players[whosturn])
                         players[whosturn].sprites()[-1].set_face(UP)
                         whosturn = end_turn(players, whosturn)
@@ -451,7 +451,7 @@ def main(playertypes, screensize):
                 print "Remove event."
                 pass"""
 
-        if players[whosturn].ai is 1 and cardprocessed is 1:
+        if players[whosturn].ai == 1 and cardprocessed == 1:
             cready = 1
 
             for p in players:
@@ -466,7 +466,7 @@ def main(playertypes, screensize):
 
             if cready == 1:
                 r = players[whosturn].next_turn(discard.sprites()[-1].cardid, currentsuit)
-                if r is None:
+                if r == None:
                     fiftytwo.draw_card(deck, players[whosturn])
                     whosturn = end_turn(players, whosturn)
                 else:

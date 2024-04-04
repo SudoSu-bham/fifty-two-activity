@@ -80,7 +80,7 @@ class Activity(activity.Activity):
             chooser = ObjectChooser(
                 None, self,
                 Gtk.DialogFlags.MODAL | 0)
-        if chooser is not None:
+        if chooser != None:
             try:
                 result = chooser.run()
                 if result == Gtk.ResponseType.ACCEPT:
